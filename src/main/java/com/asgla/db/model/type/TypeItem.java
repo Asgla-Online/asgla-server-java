@@ -7,4 +7,9 @@ import org.javalite.activejdbc.annotations.Table;
 @Cached
 @Table("types_items")
 public class TypeItem extends Model {
+
+    public String name() {
+        return getString("name");
+    }
+
 }

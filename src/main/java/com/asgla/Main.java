@@ -1,8 +1,11 @@
 package com.asgla;
 
 import com.asgla.db.Database;
+import com.asgla.db.model.character.Character;
 import com.asgla.db.model.user.User;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 public class Main {
 
@@ -11,7 +14,16 @@ public class Main {
     public static void main(String[] params) {
         Database.open();
 
-        log.info("Test {}", User.findById(9).getId());
+        User user = User.findById(99999);
+
+        log.info("user {}", user.username());
+
+        List<Character> characters = user.getAll(Character.class);
+
+        characters.forEach(character -> {
+            log.info("name {}", character.name());
+            log.info("username {}", character.user().username());
+        });
 
         Database.close();
     }

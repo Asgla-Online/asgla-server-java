@@ -7,4 +7,13 @@ import org.javalite.activejdbc.annotations.Table;
 @Cached
 @Table("type_rarities")
 public class TypeRarity extends Model {
+
+    public String name() {
+        return getString("name");
+    }
+
+    public int color() {
+        return Integer.valueOf(getString("Color"), 16);
+    }
+
 }
