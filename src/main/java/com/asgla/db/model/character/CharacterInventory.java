@@ -26,7 +26,7 @@ public class CharacterInventory extends Model {
     }
 
     public Character character() {
-        return Character.findById(itemId());
+        return Character.findById(characterId());
     }
 
     public Item item() {
