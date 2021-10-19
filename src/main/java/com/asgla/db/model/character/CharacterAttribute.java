@@ -36,6 +36,10 @@ public class CharacterAttribute extends Model {
         return getString("experience");
     }
 
+    public String bagSlot() {
+        return getString("bag_slot");
+    }
+
     public String colorAccessory() {
         return getString("color_accessory");
     }
@@ -66,10 +70,6 @@ public class CharacterAttribute extends Model {
 
     public String colorNose() {
         return getString("color_nose");
-    }
-
-    public String bagSlot() {
-        return getString("bag_Slot");
     }
 
     public Character character() {
