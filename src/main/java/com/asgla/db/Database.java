@@ -39,13 +39,13 @@ public class Database {
         }
     }
 
-    public static void rollback() {
+    public static void rollbackTransaction() {
         if (Base.hasConnection()) {
             Base.rollbackTransaction();
         }
     }
 
-    public static void commit() {
+    public static void commitTransaction() {
         if (Base.hasConnection()) {
             Base.commitTransaction();
         }
