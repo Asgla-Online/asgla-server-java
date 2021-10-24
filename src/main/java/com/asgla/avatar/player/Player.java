@@ -34,11 +34,15 @@ public class Player extends Avatar {
     private User user;
     private long databaseId;
 
+    private PlayerInventory inventory;
+
     public Player() { }
 
     public Player(User user, long databaseId) {
         this.user = user;
         this.databaseId = databaseId;
+
+        this.inventory = new PlayerInventory(this);
 
         user.player(this);
     }
@@ -49,6 +53,10 @@ public class Player extends Avatar {
 
     public long databaseId() {
         return databaseId;
+    }
+
+    public PlayerInventory inventory() {
+        return inventory;
     }
 
     public int id() {

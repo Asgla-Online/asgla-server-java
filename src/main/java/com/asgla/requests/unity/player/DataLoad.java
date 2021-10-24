@@ -13,36 +13,35 @@ public class DataLoad implements IRequest {
 
     @Override
     public void onRequest(Player player, RequestArgs args) {
-        if (args.length < 1) return;
+        if (args.length < 1) {
+            return;
+        }
 
         JSONArray players = new JSONArray();
 
-        for (String id : args.list()) {
-            int userId = Integer.parseInt(id);
-
-            Player target = Player.findById(userId);
-
+        args.list().stream().mapToInt(Integer::parseInt).mapToObj(Player::findById).forEachOrdered(target -> {
             JSONObject data = target.properties();
 
-            //data.element("Part", target.equipment().json());
+            data.element("part", target.inventory().json());
 
-            if (target.equals(player))
-                data.element("Controlling", true);
+            if (target.equals(player)) {
+                data.element("isControlling", true);
+            }
 
             players.add(new JSONObject()
-                .element("Data", data)
-                .element("Stats", new JSONObject()
-                    .element("Health", target.status().health().getValue())
-                    .element("HealthMax", target.status().health().getValueMax())
-                    .element("Energy", target.status().energy().getValue())
-                    .element("EnergyMax", target.status().energy().getValueMax())
+                .element("sata", data)
+                .element("stats", new JSONObject()
+                    .element("health", target.status().health().getValue())
+                    .element("healthMax", target.status().health().getValueMax())
+                    .element("energy", target.status().energy().getValue())
+                    .element("energyMax", target.status().energy().getValueMax())
                 )
             );
-        }
+        });
 
         player.dispatch(new JSONObject()
             .element("cmd", RequestCommand.PlayerDataLoad)
-            .element("Players", players)
+            .element("players", players)
         );
     }
 
