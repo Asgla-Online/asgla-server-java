@@ -128,8 +128,6 @@ public class ConnectionHandler extends SimpleChannelInboundHandler<Object> {
                     i++;
                 }
 
-                log.info(user.player() == null ? "player is null" : "player ok");
-
                 //noinspection SwitchStatementWithTooFewBranches
                 switch (cmd) {
                     case "Login" -> Login(user, params);
@@ -142,10 +140,13 @@ public class ConnectionHandler extends SimpleChannelInboundHandler<Object> {
         } catch (WebSocketHandshakeException webSocketHandshakeException) {
             log.error("WebSocketHandshakeException {}", webSocketHandshakeException.getMessage());
             channelHandlerContext.channel().close();
-        }/* catch (RuntimeException runtimeException) {
+        } catch (RuntimeException runtimeException) {
             log.error("RuntimeException {}", runtimeException.getMessage());
             channelHandlerContext.channel().close();
-        }*/
+        } catch (Exception exception) {
+            log.error("Exception {}", exception.getMessage());
+            channelHandlerContext.channel().close();
+        }
     }
 
     public void Login(User user, String[] params) {
