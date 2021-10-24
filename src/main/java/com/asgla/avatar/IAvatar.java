@@ -1,8 +1,9 @@
 package com.asgla.avatar;
 
-public interface IAvatar {
+import com.asgla.util.IDispatchable;
 
-    //Combat
+public interface IAvatar extends IDispatchable {
+
     void onAttack();
 
     void onDodge();
@@ -21,6 +22,6 @@ public interface IAvatar {
 
     void onComplete();
 
-    boolean onSpawn();
+    void onSpawn();
 
 }
