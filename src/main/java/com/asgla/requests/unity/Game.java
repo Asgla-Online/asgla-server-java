@@ -17,7 +17,7 @@ public class Game implements IRequest {
     public void onRequest(Player player, RequestArgs args) {
         JSONObject game = new JSONObject()
             .element("cmd", 10)
-            .element("Player", player.properties());
+            .element("player", player.properties());
 
         player.dispatch(game);
     }

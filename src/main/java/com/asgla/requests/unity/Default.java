@@ -18,7 +18,7 @@ public class Default implements IRequest {
 
         player.dispatch(new JSONObject()
             .element("cmd", RequestCommand.Default)
-            .element("Message", "Unknown request.")
+            .element("message", "Unknown request.")
         );
     }
 

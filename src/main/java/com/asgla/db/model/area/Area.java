@@ -39,7 +39,7 @@ public class Area extends Model {
 
     public JSONObject jsonObject() {
         return new JSONObject()
-            .element("databaseID", getId())
+            .element("databaseId", getId())
             .element("name", name())
             .element("bundle", bundle())
             .element("asset", asset())

@@ -26,8 +26,8 @@ public class CharacterAttribute extends Model {
         return getString("access");
     }
 
-    public String level() {
-        return getString("level");
+    public Integer level() {
+        return getInteger("level");
     }
 
     public String experience() {

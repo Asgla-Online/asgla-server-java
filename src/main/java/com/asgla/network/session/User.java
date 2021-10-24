@@ -100,8 +100,8 @@ public class User {
 
                 player.gameRoom().dispatchExceptOne(
                     new JSONObject()
-                        .element("Cmd", RequestCommand.LeaveMap)
-                        .element("PlayerID", player.id()),
+                        .element("cmd", RequestCommand.LeaveMap)
+                        .element("playerId", player.id()),
                     player
                 );
 
@@ -114,7 +114,7 @@ public class User {
 
             //TODO: notification
 
-            player.onDeath();
+            //player.onDeath();
         }
 
         if (userManager().getUserById(id()) != null) {

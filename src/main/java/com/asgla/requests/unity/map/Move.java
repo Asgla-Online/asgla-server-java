@@ -22,9 +22,9 @@ public class Move implements IRequest {
         player.gameRoom().dispatchExceptOne(
             new JSONObject()
                 .element("cmd", RequestCommand.Move)
-                .element("Avatar", new JSONObject()
-                    .element("AvatarID", player.id())
-                    .element("AvatarType", player.type())
+                .element("avatar", new JSONObject()
+                    .element("avatarId", player.id())
+                    .element("avatarType", player.type())
                 )
                 .element("x", position.x)
                 .element("y", position.y)

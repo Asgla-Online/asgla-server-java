@@ -57,8 +57,8 @@ public class RoomController {
             //User LeaveMap
             user.network().sendExcept(
                 new JSONObject()
-                    .element("Cmd",RequestCommand.LeaveMap)
-                    .element("PlayerID", user.id()),
+                    .element("cmd",RequestCommand.LeaveMap)
+                    .element("playerId", user.id()),
                 room.getChannelList()
             );
 

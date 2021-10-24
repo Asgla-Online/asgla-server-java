@@ -64,8 +64,8 @@ public class Player extends Avatar {
         CharacterAttribute characterAttribute = character.characterAttribute();
 
         return new JSONObject()
-            .element("playerID", user().id())
-            .element("databaseID", databaseId())
+            .element("playerId", user().id())
+            .element("databaseId", databaseId())
 
             .element("username", user().name())
             .element("gender", characterAttribute.gender())
@@ -83,8 +83,8 @@ public class Player extends Avatar {
             .element("colorNose", characterAttribute.colorNose())
 
             .element("area", new JSONObject()
-                .element("area", gameRoom().data().name())
-                .element("position", vector2()))
+                .element("area", area.name())
+                .element("point", point))
 
             .element("x", vector2().x)
             .element("y", vector2().y)
@@ -99,7 +99,7 @@ public class Player extends Avatar {
         gameRoom.dispatchExceptOne(
             new JSONObject()
                 .element("cmd", RequestCommand.PlayerUpdate)
-                .element("Player", this.properties()),
+                .element("player", this.properties()),
             this
         );
     }
@@ -117,17 +117,17 @@ public class Player extends Avatar {
             players.add(playerInRoomProp);
         });
 
-        JSONObject mapData = gameRoom.data().jsonObject();
+        JSONObject jsonObject = gameRoom.data().jsonObject();
 
-        mapData
-            .element("MapID", gameRoom.id())
-            .element("Players", players);
-        //.element("Monsters", gameRoom().monsters());
-        //.element("NPCS", gameRoom().npcs());
+        jsonObject
+            .element("roomId", gameRoom.id())
+            .element("players", players);
+        //.element("monsters", gameRoom().monsters());
+        //.element("npcs", gameRoom().npcs());
 
         player.dispatch(new JSONObject()
             .element("cmd", RequestCommand.JoinMap)
-            .element("Map", mapData)
+            .element("area", jsonObject)
         );
 
         player.dispatch(ServerMessage.json(ServerMessage.GAME, "Joined '%s'", gameRoom.name()));
@@ -171,9 +171,9 @@ public class Player extends Avatar {
             gameRoom().dispatchExceptOne(
                 new JSONObject()
                     .element("cmd", 11)
-                    .element("PlayerID", user().id())
-                    .element("Area", area)
-                    .element("Position", point)
+                    .element("playerId", user().id())
+                    .element("area", area)
+                    .element("position", point)
                 , this
             );
         }

@@ -26,7 +26,7 @@ public class Character extends Model {
     }
 
     public List<CharacterInventory> characterInventory() {
-        return CharacterInventory.find("UserID = ?", getId());
+        return CharacterInventory.find("character_id = ?", getId());
     }
 
 }
