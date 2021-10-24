@@ -21,6 +21,10 @@ public class Character extends Model {
         return User.findById(userId());
     }
 
+    public CharacterAttribute characterAttribute() {
+        return CharacterAttribute.findById(getId());
+    }
+
     public List<CharacterInventory> characterInventory() {
         return CharacterInventory.find("UserID = ?", getId());
     }

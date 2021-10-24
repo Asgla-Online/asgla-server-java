@@ -2,15 +2,13 @@ package com.asgla.db.model.character;
 
 import org.javalite.activejdbc.Model;
 import org.javalite.activejdbc.annotations.Cached;
+import org.javalite.activejdbc.annotations.IdName;
 import org.javalite.activejdbc.annotations.Table;
 
 @Cached
 @Table("characters_attributes")
+@IdName("character_id")
 public class CharacterAttribute extends Model {
-
-    public Integer characterId() {
-        return getInteger("character_id");
-    }
 
     public String gold() {
         return getString("gold");
@@ -73,7 +71,7 @@ public class CharacterAttribute extends Model {
     }
 
     public Character character() {
-        return Character.findById(characterId());
+        return Character.findById(getId());
     }
 
 }
