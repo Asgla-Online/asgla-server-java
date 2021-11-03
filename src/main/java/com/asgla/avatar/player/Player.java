@@ -7,6 +7,7 @@ import com.asgla.db.model.area.AreaLocal;
 import com.asgla.db.model.character.Character;
 import com.asgla.db.model.character.CharacterAttribute;
 import com.asgla.network.session.User;
+import com.asgla.util.AvatarType;
 import com.asgla.util.RequestCommand;
 import com.asgla.util.ServerMessage;
 import net.sf.json.JSONArray;
@@ -54,6 +55,7 @@ public class Player extends Avatar {
         return user;
     }
 
+    @Override
     public long databaseId() {
         return databaseId;
     }
@@ -66,8 +68,14 @@ public class Player extends Avatar {
         return status;
     }
 
+    @Override
     public int id() {
         return user().id();
+    }
+
+    @Override
+    public AvatarType type() {
+        return AvatarType.Player;
     }
 
     public Character character() {

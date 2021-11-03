@@ -23,9 +23,11 @@ public abstract class Avatar implements IAvatar {
 
     private final Set<Avatar> targets = new CopyOnWriteArraySet<>();
 
-    public AvatarType type() {
-        return avatarType;
-    }
+    public abstract long databaseId();
+
+    public abstract int id();
+
+    public abstract AvatarType type();
 
     public Vector2 vector2() {
         return position;
