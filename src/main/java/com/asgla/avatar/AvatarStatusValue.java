@@ -2,12 +2,12 @@ package com.asgla.avatar;
 
 public class AvatarStatusValue {
 
-    private volatile int value = 0;
-    private volatile int valueMax = 0;
+    private volatile int value;
+    private volatile int valueMax;
 
-    public AvatarStatusValue(int value, int valueMax) {
+    public AvatarStatusValue(int value) {
         this.value = value;
-        this.valueMax = valueMax;
+        this.valueMax = value;
     }
 
     public int getValue() {

@@ -29,7 +29,7 @@ public class DataLoad implements IRequest {
             }
 
             players.add(new JSONObject()
-                .element("sata", data)
+                .element("data", data)
                 .element("stats", new JSONObject()
                     .element("health", target.status().health().getValue())
                     .element("healthMax", target.status().health().getValueMax())
