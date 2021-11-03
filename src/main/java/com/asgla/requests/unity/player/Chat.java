@@ -20,9 +20,11 @@ public class Chat implements IRequest {
         Integer channel = args.getInt(0);
         String message = args.getStr(1);
 
-        JSONObject chat = ServerMessage.json(player.character().name(), channel, message);
+        JSONObject chat = ServerMessage.json(player, channel, message);
 
         switch (channel) {
+            case 0 -> //All
+                serverController().dispatch(chat);
             case 1 -> //Global
                 serverController().dispatch(chat);
             case 2 -> //Zone
