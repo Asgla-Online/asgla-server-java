@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.AccessController;
+import java.lang.reflect.InvocationTargetException;
 import java.security.PrivilegedAction;
 import java.util.Properties;
 
@@ -25,15 +25,17 @@ public class RequestFactory {
     }
 
     public IRequest create(String command) {
-        RequestClassLoader requestLoader = AccessController.doPrivileged(
-            new RequestLoaderAction()
-        );
+        //RequestClassLoader requestLoader = AccessController.doPrivileged(
+        //    new RequestLoaderAction()
+        //);
+
+        RequestClassLoader requestLoader = new RequestClassLoader(
+            RequestFactory.class.getClassLoader());
 
         try {
             Class<IRequest> requestDefinition = (Class<IRequest>) requestLoader.loadClass(requests.getProperty(command, "com.asgla.requests.unity.DefaultRequest"));
-            return requestDefinition.newInstance();
-        } catch (ClassNotFoundException | InstantiationException |
-            IllegalAccessException ex) {
+            return requestDefinition.getDeclaredConstructor().newInstance();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
             log.error("Error creating request", ex);
             return new Default();
         }

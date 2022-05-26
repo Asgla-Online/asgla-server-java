@@ -17,16 +17,32 @@ public class CharacterInventory extends Model {
         return getInteger("item_id");
     }
 
-    public Boolean isDeleted() {
-        return getBoolean("is_deleted");
+    public boolean isEquipped() {
+        return getBoolean("is_equipped");
     }
 
     public Timestamp purchasedAt() {
         return getTimestamp("purchased_at");
     }
 
+    public Timestamp updatedAt() {
+        return getTimestamp("updated_at");
+    }
+
+    public Timestamp deletedAt() {
+        return getTimestamp("deleted_at");
+    }
+
     public Character character() {
         return Character.findById(characterId());
+    }
+
+    public Boolean isDeleted() {
+        return deletedAt() != null;
+    }
+
+    public CharacterInventory equipped(boolean value) {
+        return setBoolean("is_equipped", value);
     }
 
     public Item item() {

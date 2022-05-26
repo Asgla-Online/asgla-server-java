@@ -1,6 +1,8 @@
 package com.asgla.avatar.player;
 
 import com.asgla.db.model.character.CharacterInventory;
+import com.asgla.db.model.item.Item;
+import com.asgla.util.RequestCommand;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -12,6 +14,24 @@ public class PlayerInventory {
 
     public PlayerInventory(Player player) {
         this.player = player;
+    }
+
+    public void equip(CharacterInventory inventory) {
+        if (inventory == null)
+            return;
+
+        Item item =  inventory.item();
+
+        player.gameRoom().dispatch(new JSONObject()
+            .element("cmd", RequestCommand.EquipPart)
+            .element("PlayerID", player.user().id())
+            .element("Type", item.typeItem().json())
+            .element("Bundle", item.bundle())
+            .element("Asset", item.asset()));
+
+        inventory.equipped(true);
+
+        player.stats().update();
     }
 
     public JSONArray json() {

@@ -1,5 +1,6 @@
 package com.asgla.db.model.item;
 
+import com.asgla.db.model.stats.Stats;
 import com.asgla.db.model.type.TypeItem;
 import com.asgla.db.model.type.TypeRarity;
 import org.javalite.activejdbc.Model;
@@ -44,6 +45,10 @@ public class Item extends Model {
 
     public TypeRarity typeRarity() {
         return TypeRarity.findById(typeRarityId());
+    }
+
+    public Stats stats() {
+        return Stats.findById(stats_id());
     }
 
 }

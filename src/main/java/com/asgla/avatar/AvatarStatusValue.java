@@ -26,11 +26,11 @@ public class AvatarStatusValue {
         this.valueMax = valueMax;
     }
 
-    public boolean isFullHealth() {
+    public boolean isFull() {
         return getValue() >= getValueMax();
     }
 
-    public double healthPercentage() {
+    public double percentage() {
         return (getValue() * 100) / (double) getValueMax();
     }
 

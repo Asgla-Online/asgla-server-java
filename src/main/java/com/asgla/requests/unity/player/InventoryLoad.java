@@ -13,6 +13,8 @@ public class InventoryLoad implements IRequest {
 
     @Override
     public void onRequest(Player player, RequestArgs args) {
+        player.stats().update();
+
         JSONObject pli = new JSONObject()
             .element("cmd", RequestCommand.PlayerInventoryLoad)
             .element("playerId", player.user().id())

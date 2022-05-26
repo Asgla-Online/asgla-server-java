@@ -1,6 +1,7 @@
 package com.asgla.avatar.player;
 
 import com.asgla.avatar.Avatar;
+import com.asgla.avatar.AvatarStats;
 import com.asgla.avatar.AvatarStatus;
 import com.asgla.data.GameRoom;
 import com.asgla.db.model.area.AreaLocal;
@@ -37,6 +38,7 @@ public class Player extends Avatar {
     private long databaseId;
 
     private PlayerInventory inventory;
+    private PlayerStats stats;
     private PlayerStatus status;
 
     public Player() { }
@@ -46,6 +48,7 @@ public class Player extends Avatar {
         this.databaseId = databaseId;
 
         this.inventory = new PlayerInventory(this);
+        this.stats = new PlayerStats(this);
         this.status = new PlayerStatus(this);
 
         user.player(this);
@@ -64,6 +67,12 @@ public class Player extends Avatar {
         return inventory;
     }
 
+    @Override
+    public AvatarStats stats() {
+        return stats;
+    }
+
+    @Override
     public AvatarStatus status() {
         return status;
     }
