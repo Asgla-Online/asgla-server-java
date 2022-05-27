@@ -7,8 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="explosion" />
-        <module name="asgla-server-java" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="asgla-server-java" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
